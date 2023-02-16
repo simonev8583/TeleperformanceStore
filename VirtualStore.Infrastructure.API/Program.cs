@@ -1,4 +1,21 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.AspNetCore.Mvc.Versioning;
+using VirtualStore.Infrastructure.API;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApiVersioning(opt =>
+{
+    opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 1);
+    opt.AssumeDefaultVersionWhenUnspecified = true;
+    opt.ReportApiVersions = true;
+    opt.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
+                                                    new HeaderApiVersionReader("x-api-version"),
+                                                    new MediaTypeApiVersionReader("x-api-version"));
+});
+
+var startup = new Startup();
+
+startup.ConfigureContainer(builder.Services, builder.Configuration);
 
 // Add services to the container.
 

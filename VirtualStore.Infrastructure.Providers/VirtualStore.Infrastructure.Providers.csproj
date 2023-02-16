@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VirtualStore.Application\VirtualStore.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Encrypt\" />
+    <None Remove="Encrypt\Config\" />
+    <None Remove="Microsoft.Extensions.Options" />
+    <None Remove="Microsoft.IdentityModel.Tokens" />
+    <None Remove="Jwt\" />
+    <None Remove="Jwt\Config\" />
+    <None Remove="Microsoft.AspNetCore.Authorization" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Encrypt\" />
+    <Folder Include="Encrypt\Config\" />
+    <Folder Include="Jwt\" />
+    <Folder Include="Jwt\Config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.3" />
+  </ItemGroup>
+</Project>

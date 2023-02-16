@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.UI.Client", "VirtualStore.UI.Client\VirtualStore.UI.Client.csproj", "{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.Infrastructure.Providers", "VirtualStore.Infrastructure.Providers\VirtualStore.Infrastructure.Providers.csproj", "{AA6BFDDF-FC0A-414B-9ACD-07BC955B8763}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA6BFDDF-FC0A-414B-9ACD-07BC955B8763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA6BFDDF-FC0A-414B-9ACD-07BC955B8763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA6BFDDF-FC0A-414B-9ACD-07BC955B8763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA6BFDDF-FC0A-414B-9ACD-07BC955B8763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
