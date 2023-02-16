@@ -8,10 +8,42 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.Application", "VirtualStore.Application\VirtualStore.Application.csproj", "{BA3B26B4-1BFC-41B2-A5DE-A9AA26C7BB19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.Domain", "VirtualStore.Domain\VirtualStore.Domain.csproj", "{179D6F71-F813-4456-979A-3A0C6502AE22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.Infrastructure.Data", "VirtualStore.Infrastructure.Data\VirtualStore.Infrastructure.Data.csproj", "{D42D855C-F520-412E-9145-4DEF48DC6D8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.Infrastructure.API", "VirtualStore.Infrastructure.API\VirtualStore.Infrastructure.API.csproj", "{BBC7B442-2DAC-46F7-A6E0-3BECD7A85847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualStore.UI.Client", "VirtualStore.UI.Client\VirtualStore.UI.Client.csproj", "{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA3B26B4-1BFC-41B2-A5DE-A9AA26C7BB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA3B26B4-1BFC-41B2-A5DE-A9AA26C7BB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA3B26B4-1BFC-41B2-A5DE-A9AA26C7BB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA3B26B4-1BFC-41B2-A5DE-A9AA26C7BB19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{179D6F71-F813-4456-979A-3A0C6502AE22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{179D6F71-F813-4456-979A-3A0C6502AE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{179D6F71-F813-4456-979A-3A0C6502AE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{179D6F71-F813-4456-979A-3A0C6502AE22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42D855C-F520-412E-9145-4DEF48DC6D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42D855C-F520-412E-9145-4DEF48DC6D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42D855C-F520-412E-9145-4DEF48DC6D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42D855C-F520-412E-9145-4DEF48DC6D8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC7B442-2DAC-46F7-A6E0-3BECD7A85847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC7B442-2DAC-46F7-A6E0-3BECD7A85847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC7B442-2DAC-46F7-A6E0-3BECD7A85847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC7B442-2DAC-46F7-A6E0-3BECD7A85847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA72CD3F-BD1D-45A3-8F67-AB98F9DE266E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
