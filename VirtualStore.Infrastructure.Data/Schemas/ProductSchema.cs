@@ -18,7 +18,10 @@ namespace VirtualStore.Infrastructure.Data.Schemas
         public double Price { get; set; }
 
         [BsonElement("stock")]
-        public int stock { get; set; }
+        public int Stock { get; set; }
+
+        [BsonElement("owner")]
+        public string Owner { get; set; }
     }
 }
 

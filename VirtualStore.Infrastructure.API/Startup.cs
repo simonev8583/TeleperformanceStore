@@ -39,15 +39,13 @@ namespace VirtualStore.Infrastructure.API
         {
             services.AddSingleton<IPersonService<PersonDto>, PersonService>();
             services.AddSingleton<ISecurityService, SecurityService>();
+            services.AddSingleton<IProductService<ProductDto>, ProductService>();
         }
 
         protected void ConfigureRepositories(IServiceCollection services)
         {
-            services.AddSingleton<IPersonRepository<Person>, PersonRepository>(x =>
-            {
-                var db = x.GetRequiredService<DbContext>();
-                return new PersonRepository(db);
-            });
+            services.AddSingleton<IPersonRepository<Person>, PersonRepository>();
+            services.AddSingleton<IProductRepository<Product>, ProductRepository>();
         }
 
         protected void ConfigureDbContext(IServiceCollection services)

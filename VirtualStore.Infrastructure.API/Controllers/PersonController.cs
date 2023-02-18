@@ -47,7 +47,6 @@ namespace VirtualStore.Infrastructure.API.Controllers
         // POST api/values
         [HttpPost]
         [MapToApiVersion("1.0")]
-        [Authorization]
         public ActionResult<PersonDto> Post([FromBody] PersonDto personDto)
         {
             var token = HttpContext.Request.Headers.Authorization.FirstOrDefault()?.Split(" ").Last();
