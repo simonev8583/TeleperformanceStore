@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using VirtualStore.Infrastructure.API.Helpers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,10 +18,12 @@ namespace VirtualStore.Infrastructure.API.Controllers
     public class PersonController : Controller
     {
         private readonly IPersonService<PersonDto> _personService;
+        private readonly IAuthenticateService _authenticateService;
 
-        public PersonController(IPersonService<PersonDto> personService)
+        public PersonController(IPersonService<PersonDto> personService, IAuthenticateService authenticateService)
         {
             _personService = personService;
+            _authenticateService = authenticateService;
         }
 
         // GET: api/values
@@ -44,8 +47,18 @@ namespace VirtualStore.Infrastructure.API.Controllers
         // POST api/values
         [HttpPost]
         [MapToApiVersion("1.0")]
+        [Authorization]
         public ActionResult<PersonDto> Post([FromBody] PersonDto personDto)
         {
+            var token = HttpContext.Request.Headers.Authorization.FirstOrDefault()?.Split(" ").Last();
+
+            var userId = _authenticateService.VerifyToken(token!);
+            if (userId == null)
+            {
+                // attach user to context on successful jwt validation
+                return Unauthorized("Sin autorización");
+            }
+
             return Ok(_personService.Create(personDto));
         }
 

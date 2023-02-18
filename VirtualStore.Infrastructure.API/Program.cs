@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Versioning;
 using VirtualStore.Infrastructure.API;
+using VirtualStore.Infrastructure.API.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<JwtMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

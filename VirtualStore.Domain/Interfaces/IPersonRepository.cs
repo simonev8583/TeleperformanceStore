@@ -6,6 +6,8 @@ namespace VirtualStore.Domain.Interfaces
         TEntity Create(TEntity entity);
 
         TEntity? GetByUsername(string username, string? password);
+
+        TEntity? GetById(string userId);
     }
 }
 

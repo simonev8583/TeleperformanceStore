@@ -26,7 +26,7 @@ namespace VirtualStore.Infrastructure.Providers.Jwt
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.Sid,userId)
+                new Claim(ClaimTypes.Sid, userId)
             };
 
             var token = new JwtSecurityToken(
@@ -44,6 +44,39 @@ namespace VirtualStore.Infrastructure.Providers.Jwt
             dto.Token = jwt;
 
             return dto;
+        }
+
+        public string? VerifyToken(string token)
+        {
+            if (token == null)
+                return null;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_settings.SecretKey);
+
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+                var userId = jwtToken.Claims.First(x => x.Type == ClaimTypes.Sid).Value;
+
+                // return user id from JWT token if validation successful
+                return userId;
+            }
+            catch
+            {
+                // return null if validation fails
+                return null;
+            }
         }
     }
 }

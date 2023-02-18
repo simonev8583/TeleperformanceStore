@@ -33,6 +33,15 @@ namespace VirtualStore.Application.Services
 
             return PersonDto.FromDomain(person);
         }
+
+        public PersonDto GetById(string id)
+        {
+            var person = _personProvider.GetById(id);
+
+            if (person == null) throw new ArgumentNullException("No se econtró el usuario");
+
+            return PersonDto.FromDomain(person);
+        }
     }
 }
 

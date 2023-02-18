@@ -42,6 +42,16 @@ namespace VirtualStore.Infrastructure.Data.Repositories
             return MapToModel(result);
         }
 
+        public Person? GetById(string userId)
+        {
+            var filter = Builders<PersonSchema>.Filter.Eq("_id", new ObjectId(userId));
+            var result = _db.Person.Find(filter).FirstOrDefault();
+
+            if (result == null) return null;
+
+            return this.MapToModel(result);
+        }
+
         private PersonSchema MapToSchema(Person person)
         {
             return new()
@@ -61,6 +71,7 @@ namespace VirtualStore.Infrastructure.Data.Repositories
 
             return person;
         }
+
     }
 }
 

@@ -23,7 +23,7 @@ namespace VirtualStore.Infrastructure.API.Controllers
             _securityService = securityService;
         }
 
-        [HttpPost]
+        [HttpPost("SignIn")]
         [MapToApiVersion("1.0")]
         public ActionResult<TokenDto> Post([FromBody] CredentialsDto credentialsDto)
         {
