@@ -26,56 +26,15 @@ namespace VirtualStore.Infrastructure.API.Controllers
             _authenticateService = authenticateService;
         }
 
-        // GET: api/values
-        /*
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-        */
-
-        // GET api/values/5
-        /*
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-        */
-
         // POST api/values
         [HttpPost]
         [MapToApiVersion("1.0")]
+        [Helpers.AllowAnonymous]
         public ActionResult<PersonDto> Post([FromBody] PersonDto personDto)
         {
-            var token = HttpContext.Request.Headers.Authorization.FirstOrDefault()?.Split(" ").Last();
-
-            var userId = _authenticateService.VerifyToken(token!);
-            if (userId == null)
-            {
-                // attach user to context on successful jwt validation
-                return Unauthorized("Sin autorización");
-            }
 
             return Ok(_personService.Create(personDto));
         }
-
-        // PUT api/values/5
-        /*
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-        */
-
-        // DELETE api/values/5
-        /*
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-        */
     }
 }
 

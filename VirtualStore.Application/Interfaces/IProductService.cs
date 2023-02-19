@@ -11,9 +11,9 @@ namespace VirtualStore.Application.Interfaces
 
         TEntity GetById(string productId);
 
-        TEntity Update(TEntity dto);
+        TEntity Update(TEntity dto, string productId, string personId);
 
-        string Delete(TEntity dto);
+        string Delete(string productId, string ownerId);
     }
 }
 

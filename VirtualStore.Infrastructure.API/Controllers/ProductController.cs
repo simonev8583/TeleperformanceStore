@@ -47,6 +47,8 @@ namespace VirtualStore.Infrastructure.API.Controllers
 
         // GET api/values/5
         [HttpGet("{productId}")]
+        [MapToApiVersion("1.0")]
+        [Authorization]
         public ActionResult<ProductDto> Get(string productId)
         {
             return Ok(_productService.GetById(productId));
@@ -64,14 +66,24 @@ namespace VirtualStore.Infrastructure.API.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [MapToApiVersion("1.0")]
+        [Authorization]
+        public ActionResult<ProductDto> Put(string id, [FromBody] ProductDto product)
         {
+            var person = (PersonDto)HttpContext.Items["User"]!;
+
+            return Ok(_productService.Update(product, id, person.Id!));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [MapToApiVersion("1.0")]
+        [Authorization]
+        public ActionResult<string> Delete(string id)
         {
+            var person = (PersonDto)HttpContext.Items["User"]!;
+
+            return Ok(_productService.Delete(id, person.Id!));
         }
     }
 }

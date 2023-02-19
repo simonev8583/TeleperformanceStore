@@ -22,6 +22,9 @@ namespace VirtualStore.Infrastructure.Data.Schemas
 
         [BsonElement("owner")]
         public string Owner { get; set; }
+
+        [BsonElement("quantity")]
+        public int Quantity { get; set; }
     }
 }
 

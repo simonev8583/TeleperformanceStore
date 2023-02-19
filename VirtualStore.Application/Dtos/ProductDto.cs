@@ -15,6 +15,10 @@ namespace VirtualStore.Application.Dtos
 
         public int Stock { get; set; }
 
+        public string? Owner { get; set; } = "";
+
+        public int Quantity { get; set; }
+
         public ProductDto()
         {
         }
@@ -28,6 +32,8 @@ namespace VirtualStore.Application.Dtos
             dto.Price = product.Price;
             dto.Stock = product.Stock;
             dto.Id = product.Id;
+            dto.Owner = product.Owner;
+            dto.Quantity = product.Quantity;
 
             return dto;
         }
@@ -38,8 +44,22 @@ namespace VirtualStore.Application.Dtos
 
             product.Price = dto.Price;
             product.Stock = dto.Stock;
-            product.Owner = owner ?? "";
+            product.Owner = owner ?? dto.Owner!;
             product.Id = dto.Id;
+            product.Quantity = dto.Quantity;
+
+            return product;
+        }
+
+        public static Product ToDomain(ProductDto dto)
+        {
+            var product = new Product(dto.Title!, dto.Description!);
+
+            product.Price = dto.Price;
+            product.Stock = dto.Stock;
+            product.Owner = dto.Owner!;
+            product.Id = dto.Id;
+            product.Quantity = dto.Quantity;
 
             return product;
         }

@@ -26,9 +26,11 @@ namespace VirtualStore.Application.Services
             return ProductDto.FromDomain(productStored);
         }
 
-        public string Delete(ProductDto dto)
+        public string Delete(string productId, string ownerId)
         {
-            throw new NotImplementedException();
+            _productProvider.Delete(productId, ownerId);
+
+            return "Producto eliminado";
         }
 
         public ProductDto GetById(string productId)
@@ -68,9 +70,13 @@ namespace VirtualStore.Application.Services
             return result;
         }
 
-        public ProductDto Update(ProductDto dto)
+        public ProductDto Update(ProductDto dto, string productId, string personId)
         {
-            throw new NotImplementedException();
+            var productToUpdate = ProductDto.ToDomain(dto, personId);
+
+            var productUpdated = _productProvider.Update(productToUpdate);
+
+            return ProductDto.FromDomain(productUpdated);
         }
     }
 }

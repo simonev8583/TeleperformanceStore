@@ -11,7 +11,7 @@ namespace VirtualStore.Domain.Interfaces
 
         TEntity Update(TEntity product);
 
-        string Delete(TEntity product);
+        void Delete(string productId, string ownerId);
 
         TEntity Create(TEntity product);
     }

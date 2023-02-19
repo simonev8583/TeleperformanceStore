@@ -28,9 +28,13 @@ namespace VirtualStore.Infrastructure.Data.Repositories
             return this.MapToModel(schema);
         }
 
-        public string Delete(Product product)
+        public void Delete(string productId, string owner)
         {
-            throw new NotImplementedException();
+            var filter = Builders<ProductSchema>.Filter.Eq("_id", new ObjectId(productId));
+            filter &= Builders<ProductSchema>.Filter.Eq("owner", owner);
+
+            _db.Product.DeleteOne(filter);
+
         }
 
         public Product GetById(string productId)
@@ -83,7 +87,18 @@ namespace VirtualStore.Infrastructure.Data.Repositories
 
         public Product Update(Product product)
         {
-            throw new NotImplementedException();
+
+            var filter = Builders<ProductSchema>.Filter.Eq("_id", new ObjectId(product.Id));
+
+            var query = Builders<ProductSchema>.Update
+                .Set("title", product.Title)
+                .Set("description", product.Description)
+                .Set("price", product.Price)
+                .Set("stock", product.Stock);
+
+            var result = _db.Product.FindOneAndUpdate(filter, query);
+
+            return this.MapToModel(result);
         }
 
         private ProductSchema MapToSchema(Product product)

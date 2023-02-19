@@ -14,6 +14,18 @@ builder.Services.AddApiVersioning(opt =>
                                                     new MediaTypeApiVersionReader("x-api-version"));
 });
 
+var AllowAll = "AllowAllSpecificationsCors";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowAll, policy =>
+    {
+        policy.WithOrigins("http://localhost:3000", "http://127.0.0.1:3000")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 var startup = new Startup();
 
 startup.ConfigureContainer(builder.Services, builder.Configuration);
@@ -41,6 +53,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(AllowAll);
 
 app.Run();
 

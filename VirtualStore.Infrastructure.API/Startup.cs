@@ -2,16 +2,16 @@
 using VirtualStore.Infrastructure.Providers.Jwt.Config;
 using VirtualStore.Infrastructure.Providers.Encrypt;
 using VirtualStore.Infrastructure.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using VirtualStore.Infrastructure.Providers.Jwt;
 using VirtualStore.Infrastructure.Data.Context;
 using VirtualStore.Application.Interfaces;
 using VirtualStore.Application.Services;
+using Microsoft.IdentityModel.Tokens;
 using VirtualStore.Domain.Interfaces;
 using VirtualStore.Application.Dtos;
 using VirtualStore.Domain.Models;
 using System;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 namespace VirtualStore.Infrastructure.API
@@ -40,12 +40,14 @@ namespace VirtualStore.Infrastructure.API
             services.AddSingleton<IPersonService<PersonDto>, PersonService>();
             services.AddSingleton<ISecurityService, SecurityService>();
             services.AddSingleton<IProductService<ProductDto>, ProductService>();
+            services.AddSingleton<ICartService<CartDto>, CartService>();
         }
 
         protected void ConfigureRepositories(IServiceCollection services)
         {
             services.AddSingleton<IPersonRepository<Person>, PersonRepository>();
             services.AddSingleton<IProductRepository<Product>, ProductRepository>();
+            services.AddSingleton<ICartRepository<Cart>, CartRepository>();
         }
 
         protected void ConfigureDbContext(IServiceCollection services)

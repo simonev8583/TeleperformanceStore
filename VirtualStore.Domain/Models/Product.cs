@@ -16,6 +16,8 @@ namespace VirtualStore.Domain.Models
 
         public string Owner { get; set; } = null!;
 
+        public int Quantity { get; set; }
+
         public Product(string title, string description)
         {
             Title = title;
