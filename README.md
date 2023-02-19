@@ -4,7 +4,7 @@
 ## Instalación del cliente (REACT)
 
 ```sh
-cd VirtualStore.UI.Client
+cd VirtualStore.UI.Client/ClientApp
 npm i
 npm start
 ```
