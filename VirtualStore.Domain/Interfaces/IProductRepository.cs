@@ -14,6 +14,8 @@ namespace VirtualStore.Domain.Interfaces
         void Delete(string productId, string ownerId);
 
         TEntity Create(TEntity product);
+
+        TEntity UploadImagen(TEntity entity);
     }
 }
 

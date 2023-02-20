@@ -18,6 +18,8 @@ namespace VirtualStore.Domain.Models
 
         public int Quantity { get; set; }
 
+        public string Filename { get; set; }
+
         public Product(string title, string description)
         {
             Title = title;

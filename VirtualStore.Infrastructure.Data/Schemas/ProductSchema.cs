@@ -25,6 +25,9 @@ namespace VirtualStore.Infrastructure.Data.Schemas
 
         [BsonElement("quantity")]
         public int Quantity { get; set; }
+
+        [BsonElement("filename")]
+        public string Filename { get; set; }
     }
 }
 

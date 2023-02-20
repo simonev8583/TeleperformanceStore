@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace VirtualStore.Application.Interfaces
 {
     public interface IProductService<TEntity>
@@ -14,6 +15,9 @@ namespace VirtualStore.Application.Interfaces
         TEntity Update(TEntity dto, string productId, string personId);
 
         string Delete(string productId, string ownerId);
+
+        string UploadFile(string productId, string personId, string fileName);
+
     }
 }
 

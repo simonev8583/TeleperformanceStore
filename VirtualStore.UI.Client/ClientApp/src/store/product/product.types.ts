@@ -5,4 +5,6 @@ export enum ProductActionType {
   GET_PRODUCT_DETAIL = "getProductDetail",
   UPDATE_PRODUCT = "updateProduct",
   REMOVE_PRODUCT = "removeProduct",
+  UPLOAD_PRODUCT_IMAGE = "uploadProductImage",
+  GET_PRODUCT_IMAGE = "getProductImage",
 }

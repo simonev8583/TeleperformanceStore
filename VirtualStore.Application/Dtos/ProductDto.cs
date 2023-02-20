@@ -19,6 +19,8 @@ namespace VirtualStore.Application.Dtos
 
         public int Quantity { get; set; }
 
+        public string Filename { get; set; }
+
         public ProductDto()
         {
         }
@@ -34,6 +36,7 @@ namespace VirtualStore.Application.Dtos
             dto.Id = product.Id;
             dto.Owner = product.Owner;
             dto.Quantity = product.Quantity;
+            dto.Filename = product.Filename;
 
             return dto;
         }
@@ -47,6 +50,7 @@ namespace VirtualStore.Application.Dtos
             product.Owner = owner ?? dto.Owner!;
             product.Id = dto.Id;
             product.Quantity = dto.Quantity;
+            product.Filename = dto.Filename;
 
             return product;
         }
@@ -60,6 +64,7 @@ namespace VirtualStore.Application.Dtos
             product.Owner = dto.Owner!;
             product.Id = dto.Id;
             product.Quantity = dto.Quantity;
+            product.Filename = dto.Filename;
 
             return product;
         }

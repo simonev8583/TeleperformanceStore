@@ -1,10 +1,15 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useProduct } from "../../../hooks/useProduct";
-import { Button, Table } from "reactstrap";
+import { Button, Table, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const ProductListPage = () => {
-  const { productsOwn, getProductsOwn, removeProduct } = useProduct();
+  const { productsOwn, getProductsOwn, removeProduct, uploadFile } =
+    useProduct();
+
+  const [productId, setProductId] = useState<string>("");
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     getProductsOwn();
@@ -18,8 +23,29 @@ const ProductListPage = () => {
     }, 1000);
   };
 
+  const insertFile = (event: any) => {
+    const loadedFiles: File[] = Array.from(event.target.files);
+
+    uploadFile(loadedFiles[0], productId);
+  };
+
+  const clickInputRef = (id: string) => {
+    setProductId(id);
+    inputRef.current!.click();
+  };
+
   return (
     <Fragment>
+      <input
+        accept="image/png, image/jpeg"
+        id="product-file"
+        name="product-file"
+        type="file"
+        ref={inputRef}
+        multiple
+        style={{ display: "none" }}
+        onChange={insertFile}
+      />
       <div>
         <Link to="products/create" className="btn btn-primary">
           Agregar producto
@@ -48,12 +74,15 @@ const ProductListPage = () => {
                   className="btn btn-primary"
                 >
                   Editar
-                </Link>
+                </Link>{" "}
                 <Button
                   color="warning"
                   onClick={() => deleteProduct(product.id)}
                 >
                   Eliminar
+                </Button>{" "}
+                <Button color="info" onClick={() => clickInputRef(product.id)}>
+                  Subir imagen
                 </Button>
               </td>
             </tr>

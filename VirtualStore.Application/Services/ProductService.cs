@@ -78,6 +78,17 @@ namespace VirtualStore.Application.Services
 
             return ProductDto.FromDomain(productUpdated);
         }
+
+        public string UploadFile(string productId, string personId, string filename)
+        {
+            var product = _productProvider.GetById(productId);
+
+            product.Filename = filename;
+
+            var productUpdated = _productProvider.UploadImagen(product);
+
+            return "Se cargó la imagen";
+        }
     }
 }
 

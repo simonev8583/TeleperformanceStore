@@ -17,9 +17,11 @@
   <ItemGroup>
     <None Remove="Controllers\" />
     <None Remove="Microsoft.AspNetCore.Mvc.Versioning" />
+    <None Remove="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtualStore.Infrastructure.Data\VirtualStore.Infrastructure.Data.csproj">

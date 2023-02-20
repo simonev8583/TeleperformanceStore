@@ -44,7 +44,13 @@ export default (state = initialState, action: any) => {
         status: !!action.payload,
       };
 
+    case ProductActionType.UPLOAD_PRODUCT_IMAGE:
     case ProductActionType.REMOVE_PRODUCT:
+      return {
+        ...state,
+      };
+
+    case ProductActionType.GET_PRODUCT_IMAGE:
       return {
         ...state,
       };

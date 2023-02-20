@@ -90,6 +90,39 @@ class ProductAction {
       console.log("dispatch error");
     }
   };
+
+  uploadImageAction =
+    (image: File, productId: string) => async (dispatch: Dispatch) => {
+      const promise = productService.uploadImage(image, productId);
+
+      try {
+        const result = await Promise.resolve(promise);
+
+        dispatch({
+          type: ProductActionType.UPLOAD_PRODUCT_IMAGE,
+          payload: result,
+        });
+      } catch (error) {
+        console.log(error);
+        console.log("dispatch error");
+      }
+    };
+
+  getImageAction = (filename: string) => async (dispatch: Dispatch) => {
+    const promise = productService.getImage(filename);
+
+    try {
+      const result = await Promise.resolve(promise);
+
+      dispatch({
+        type: ProductActionType.GET_PRODUCT_IMAGE,
+        payload: result,
+      });
+    } catch (error) {
+      console.log(error);
+      console.log("dispatch error");
+    }
+  };
 }
 
 export default new ProductAction();

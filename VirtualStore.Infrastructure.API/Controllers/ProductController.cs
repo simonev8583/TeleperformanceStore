@@ -85,6 +85,44 @@ namespace VirtualStore.Infrastructure.API.Controllers
 
             return Ok(_productService.Delete(id, person.Id!));
         }
+
+        [HttpPost("Image")]
+        [MapToApiVersion("1.0")]
+        [Authorization]
+        public ActionResult<string> SaveProductImage([FromForm] FileModel fileModel, [FromForm] string productId)
+        {
+            var person = (PersonDto)HttpContext.Items["User"]!;
+
+            string uploads = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+            string suggestName = $"{productId}-{fileModel.File.FileName}";
+
+            if (fileModel.File.Length > 0)
+            {
+                string filePath = Path.Combine(uploads, suggestName);
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    fileModel.File.CopyTo(fileStream);
+                }
+            }
+
+            return Ok(_productService.UploadFile(productId, person.Id!, suggestName));
+        }
+
+        [HttpGet("Image")]
+        [MapToApiVersion("1.0")]
+        //[Authorization]
+        [AllowAnonymous]
+        public ActionResult GetFile(string filekey)
+        {
+            string uploads = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+            string filePath = Path.Combine(uploads, filekey);
+
+            Stream fileStream = new FileStream(filePath, FileMode.Open);
+
+            return File(fileStream, "application/octet-stream");
+        }
     }
 }
 

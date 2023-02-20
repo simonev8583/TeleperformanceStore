@@ -28,8 +28,10 @@ export default class BaseService {
 
       const path = `${this.baseApi}${url}`;
 
+      const headers = this.getHeaders();
+
       const queryPromise = axios.post(path, params, {
-        headers: this.getHeaders(),
+        headers: headers,
       });
 
       const result: AxiosResponse = await Promise.resolve(queryPromise);
@@ -86,7 +88,36 @@ export default class BaseService {
     }
   }
 
-  private getHeaders() {
+  protected async postForm(
+    url: string,
+    dataForm: [{ key: string; value: any }]
+  ) {
+    const bodyFormData = new FormData();
+
+    dataForm.forEach((data) => {
+      bodyFormData.append(data.key, data.value);
+    });
+
+    try {
+      const headers = this.getHeaders();
+      headers["Content-Type"] = "multipart/form-data";
+
+      const queryPromise = axios.post(`${this.baseApi}${url}`, bodyFormData, {
+        headers: this.getHeaders(),
+      });
+
+      const query = await Promise.resolve(queryPromise);
+
+      if (query.statusText === "OK") {
+        return query.data;
+      }
+      return {};
+    } catch (error) {
+      throw new Error("Ocurrio un error");
+    }
+  }
+
+  protected getHeaders() {
     const headers: any = {};
 
     headers["Content-Type"] = "application/json";

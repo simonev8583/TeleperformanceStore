@@ -101,6 +101,18 @@ namespace VirtualStore.Infrastructure.Data.Repositories
             return this.MapToModel(result);
         }
 
+        public Product UploadImagen(Product product)
+        {
+            var filter = Builders<ProductSchema>.Filter.Eq("_id", new ObjectId(product.Id));
+
+            var query = Builders<ProductSchema>.Update
+                .Set("filename", product.Filename);
+
+            var result = _db.Product.FindOneAndUpdate(filter, query);
+
+            return this.MapToModel(result);
+        }
+
         private ProductSchema MapToSchema(Product product)
         {
             return new()
@@ -111,6 +123,7 @@ namespace VirtualStore.Infrastructure.Data.Repositories
                 Price = product.Price,
                 Stock = product.Stock,
                 Owner = product.Owner,
+                Filename = product.Filename,
             };
         }
 
@@ -122,6 +135,7 @@ namespace VirtualStore.Infrastructure.Data.Repositories
             product.Stock = schema.Stock;
             product.Id = schema.Id.ToString();
             product.Owner = schema.Owner;
+            product.Filename = schema.Filename;
 
             return product;
         }

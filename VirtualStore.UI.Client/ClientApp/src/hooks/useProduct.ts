@@ -42,6 +42,10 @@ export const useProduct = () => {
     dispatch(productAction.clearProductDetailAction());
   };
 
+  const uploadFile = (image: File, productId: string) => {
+    dispatch(productAction.uploadImageAction(image, productId));
+  };
+
   return {
     products,
     productsOwn,
@@ -55,5 +59,6 @@ export const useProduct = () => {
     updateProduct,
     removeProduct,
     clearProductDetail,
+    uploadFile,
   };
 };
